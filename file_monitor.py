@@ -1,29 +1,40 @@
+import argparse
 import os
 from datetime import datetime, timedelta
 from time import sleep
 
 PATH = "/Users/dmitry/PycharmProjects/sandbox/file_monitor"
-NAME = "test2.log"
+NAME = "test.log"
 
 MAX_DELTA = timedelta(minutes=1)
 
-fd = os.path.join(PATH, NAME)
 
-if os.path.exists(fd):
-    while True:
-        statinfo = os.stat(fd)
+def file_monitor():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("file", help="absolute path to file")
+    args = parser.parse_args()
+    
+    fd = args.file
+    # fd = os.path.join(PATH, NAME)
 
-        now = datetime.now()
-        mtime = datetime.fromtimestamp(statinfo.st_mtime)
-        delta = now - mtime
+    if os.path.exists(fd):
+        while True:
+            statinfo = os.stat(fd)
 
-        if delta > MAX_DELTA:
-            print(fd + " is outdated")
-            print("mtime = " + str(mtime))
-            print("now =   " + str(now))
-            break
+            now = datetime.now()
+            mtime = datetime.fromtimestamp(statinfo.st_mtime)
+            delta = now - mtime
 
-        sleep(15)
-else:
-    print('path ' + fd + ' doesn\'t exist')
+            if delta > MAX_DELTA:
+                print(fd + " is outdated")
+                print("mtime = " + str(mtime))
+                print("now =   " + str(now))
+                break
 
+            sleep(15)
+    else:
+        print('path ' + fd + ' doesn\'t exist')
+
+
+if __name__ == "__main__":
+    file_monitor()
