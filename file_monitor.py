@@ -2,24 +2,28 @@ import os
 from datetime import datetime, timedelta
 from time import sleep
 
-PATH = "/Users/dmitry/PycharmProjects/sandbox/file_monitor/"
-NAME = "test.log"
+PATH = "/Users/dmitry/PycharmProjects/sandbox/file_monitor"
+NAME = "test2.log"
 
 MAX_DELTA = timedelta(minutes=1)
 
-fd = PATH + NAME
-while True:
-    statinfo = os.stat(fd)
+fd = os.path.join(PATH, NAME)
 
-    now = datetime.now()
-    mtime = datetime.fromtimestamp(statinfo.st_mtime)
-    delta = now - mtime
+if os.path.exists(fd):
+    while True:
+        statinfo = os.stat(fd)
 
-    if delta > MAX_DELTA:
-        print(fd + " is outdated")
-        print("mtime = " + str(mtime))
-        print("now =   " + str(now))
-        break
+        now = datetime.now()
+        mtime = datetime.fromtimestamp(statinfo.st_mtime)
+        delta = now - mtime
 
-    sleep(15)
+        if delta > MAX_DELTA:
+            print(fd + " is outdated")
+            print("mtime = " + str(mtime))
+            print("now =   " + str(now))
+            break
+
+        sleep(15)
+else:
+    print('path ' + fd + ' doesn\'t exist')
 
