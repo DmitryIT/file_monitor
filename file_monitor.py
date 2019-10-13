@@ -3,9 +3,6 @@ import os
 from datetime import datetime, timedelta
 from time import sleep
 
-PATH = "/Users/dmitry/PycharmProjects/sandbox/file_monitor"
-NAME = "test.log"
-
 MAX_DELTA = timedelta(minutes=1)
 
 
@@ -13,7 +10,7 @@ def file_monitor():
     parser = argparse.ArgumentParser()
     parser.add_argument("file", help="absolute path to file")
     args = parser.parse_args()
-    
+
     fd = args.file
     # fd = os.path.join(PATH, NAME)
 
@@ -33,7 +30,7 @@ def file_monitor():
 
             sleep(15)
     else:
-        print('path ' + fd + ' doesn\'t exist')
+        print("path " + fd + " doesn't exist")
 
 
 if __name__ == "__main__":
