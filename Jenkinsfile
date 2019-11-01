@@ -26,8 +26,8 @@ pipeline{
         }
         stage('Deploy'){
             steps{
-                sh 'ping -c 3 ${Environment}'
-                sh 'scp archive ${PROJECT}_${RELEASE}.tar.gz pi@${Environment}:/tmp/'
+                sh 'ping -c 3 ${ENVIRONMENT}'
+                sh 'scp archive ${PROJECT}_${RELEASE}.tar.gz pi@${ENVIRONMENT}:/tmp/'
             }
         }
     }
