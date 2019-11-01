@@ -13,7 +13,14 @@ pipeline{
             steps{
                 echo 'I only execute on master branch'
                 sh 'touch $RELEASE'
+
             }
+        }
+    }
+    post{
+        always{
+            echo 'I''m finisched. Removing Workspace...'
+            deleteDir()
         }
     }   
 }
