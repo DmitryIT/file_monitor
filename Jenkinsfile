@@ -16,7 +16,7 @@ pipeline{
             steps{
                 echo 'I only execute on master branch'
                 sh 'touch $RELEASE'
-                sh  'tar -cxvf ${PROJECT}_${RELEASE}.tar.gz .'
+                sh  'tar -czvf ${PROJECT}_${RELEASE}.tar.gz .'
                 print 'archive ${PROJECT}_${RELEASE}.tar.gz created'
 
             }
