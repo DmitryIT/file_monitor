@@ -19,7 +19,7 @@ pipeline{
     }
     post{
         always{
-            echo 'I''m finisched. Removing Workspace...'
+            echo 'I\'m finished. Removing Workspace...'
             deleteDir()
         }
     }   
