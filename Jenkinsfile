@@ -1,6 +1,9 @@
 #!groovy
 pipeline{
     agent any
+    environment{
+        PROJECT = 'file_monitor'
+    }
     stages{
         stage('Preparation'){
             steps{
@@ -13,6 +16,8 @@ pipeline{
             steps{
                 echo 'I only execute on master branch'
                 sh 'touch $RELEASE'
+                sh  'tar -cxvf ${PROJECT}_${RELEASE}.tar.gz .'
+                print 'archive ${PROJECT}_${RELEASE}.tar.gz created'
 
             }
         }
@@ -20,7 +25,7 @@ pipeline{
     post{
         always{
             echo 'I\'m finished. Removing Workspace...'
-            deleteDir()
+            //deleteDir()
         }
     }   
 }
