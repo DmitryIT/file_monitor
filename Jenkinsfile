@@ -10,12 +10,12 @@ pipeline{
             }
         }
         stage('Build'){
-            if (env.BRANCH_NAME == 'master'){
-                echo 'I only execute on master branch'
                 steps{
-                    sh 'touch $RELEASE'
+                    if (env.BRANCH_NAME == 'master'){
+                        echo 'I only execute on master branch'
+                        sh 'touch $RELEASE'
+                    }
                 }
             }
-        }
     }
 }
