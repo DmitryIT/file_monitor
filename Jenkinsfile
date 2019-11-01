@@ -21,7 +21,7 @@ pipeline{
                                 --exclude=./Jenkinsfile \
                         -czvf ${PROJECT}_${RELEASE}.tar.gz .'
                 print 'archive ${PROJECT}_${RELEASE}.tar.gz created'
-
+                archiveArtifacts artifacts: '*.tag.gz', fingerprint: true
             }
         }
     }
