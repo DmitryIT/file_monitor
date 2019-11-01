@@ -16,10 +16,10 @@ pipeline{
             steps{
                 echo 'I only execute on master branch'
                 sh 'touch $RELEASE'
-                sh  'tar -czvf  --exclude=./.git \
+                sh  'tar        --exclude=./.git \
                                 --exclude=./.gitignore \
                                 --exclude=./Jenkinsfile \
-                                ${PROJECT}_${RELEASE}.tar.gz .'
+                        -czvf ${PROJECT}_${RELEASE}.tar.gz .'
                 print 'archive ${PROJECT}_${RELEASE}.tar.gz created'
 
             }
