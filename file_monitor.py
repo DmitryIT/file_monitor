@@ -29,7 +29,7 @@ def file_monitor():
                 print("now =   " + str(now))
                 break
 
-            sleep(15)
+            sleep(10)
     else:
         print("path " + fd + " doesn't exist")
 
