@@ -24,6 +24,12 @@ pipeline{
                 archiveArtifacts artifacts: '*.tar.gz', fingerprint: true
             }
         }
+        stage('Deploy'){
+            steps{
+                sh 'ping -c 3 ${Environment}'
+                sh 'scp archive ${PROJECT}_${RELEASE}.tar.gz pi@${Environment}:/tmp/'
+            }
+        }
     }
     post{
         always{
